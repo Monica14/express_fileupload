@@ -19,7 +19,7 @@ var storage = multer.diskStorage({ //multers disk storage settings
 var upload = multer({ //multer settings
 	storage: storage
 }).array('file');
-// var upload = multer();
+//var upload = multer({ storage: storage });
 
 
 /* GET home page. */
@@ -34,7 +34,7 @@ router.get('/', function(req, res) {
 //   res.render('cart', { title: 'Express',prod_list:'2' });
 });
 
-router.post('/upload', function(req, res) {
+router.post('/upload',function(req, res) {
 	upload(req,res,function(err){
 		if(err){
 			 res.json({error_code:1,err_desc:err});
@@ -42,6 +42,7 @@ router.post('/upload', function(req, res) {
 		}
 		 res.json({error_code:0,err_desc:null});
 	})
+	//res.send(req.files);
 });
 
 router.get('/cartpro', function(req, res) {

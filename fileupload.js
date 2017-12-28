@@ -1,16 +1,34 @@
 //alert("asdasdsa");
 angular.module('fileUpload', ['ngFileUpload'])
-    .controller('MyCtrl',['Upload','$window',function(Upload,$window){
+    .controller('MyCtrl',['Upload','$window',function($scope,Upload,$window){
         var vm = this;
-        console.log(vm)
+        //$scope.files_save = files;
+        // foreach(files as vm.file) {
+        //     console.log(files)
+        // }
+       
         vm.submit = function(){ //function to call on form submit
             //alert("dfdsfd")
-            if (vm.upload_form.file.$valid && vm.file) { //check if from is valid
-                vm.upload(vm.file); //call upload function
+            //console.log(console.log(vm.upload_form.file.$valid))
+            for(var i=0;i<=vm.file.length;i++)
+            {
+                //console.log(vm.upload_form.file)
+                // if (vm.upload_form.file[i].$valid && vm.file[i]) { //check if from is valid
+                //     vm.upload(vm.file[i]); //call upload function
+                // }
+                // else{
+                //     alert("Only .png, .jpg, .jpeg files are allowed")
+                // }
+                if (vm.file[i]) { //check if from is valid
+                    console.log("asdsa")
+                    console.log(vm.file[i])
+                    vm.upload(vm.file[i]); //call upload function
+                }
+                else{
+                    alert("Only .png, .jpg, .jpeg files are allowed")
+                }
             }
-            else{
-                alert("Only .png, .jpg, .jpeg files are allowed")
-            }
+            
         }
         vm.upload = function (file) {
             Upload.upload({
