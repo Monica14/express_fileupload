@@ -17,15 +17,12 @@
                ngf-keep="'distinct'"
                ngf-multiple="true"
                />
-            Image thumbnail: <img style="width:100px;" ng-repeat="f in up.file" ngf-thumbnail="f || '/thumb.jpg'"/>
-            <i ng-show="up.upload_form.file.$error.required">*required</i><br>
-            <i ng-show="up.upload_form.file.$error.maxSize">File too large
-            {{up.file.size / 1000000|number:1}}MB: max 20M</i>
+            
             <button type="submit" ng-click="up.submit()">submit</button>
             <p>{{up.progress}}
-            <div ng-repeat="f in up.file">
+            <div ng-repeat="f in up.file" ng-if="f">
                     <img style="width:100px;" ngf-thumbnail="f || '/thumb.jpg'"/>
-                    <button ng-click="del_img(f)">Delete</button>
+                    <button ng-click="up.del_img(f)">Delete</button>
             </div>    
         </form>
     </body>

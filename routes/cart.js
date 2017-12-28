@@ -16,10 +16,8 @@ var storage = multer.diskStorage({ //multers disk storage settings
 // var upload = multer({ //multer settings
 // 	storage: storage
 // }).single('file');
-var upload = multer({ //multer settings
-	storage: storage
-}).array('file');
-//var upload = multer({ storage: storage });
+
+var upload = multer({ storage: storage });
 
 
 /* GET home page. */
@@ -28,26 +26,28 @@ var upload = multer({ //multer settings
 
 router.get('/', function(req, res) {
   		res.render('cart');
-	
-
-// console.log(req.cookies['prod_ids']);	
-//   res.render('cart', { title: 'Express',prod_list:'2' });
 });
 
-router.post('/upload',function(req, res) {
-	upload(req,res,function(err){
-		if(err){
-			 res.json({error_code:1,err_desc:err});
-			 return;
-		}
-		 res.json({error_code:0,err_desc:null});
-	})
-	//res.send(req.files);
+router.post('/upload',upload.any(),function(req, res) {	
+	if(req.files && req.files[0].filename)
+	{
+		req.body.filename = req.files[0].filename;
+		req.body.destination = req.files[0].destination;
+		common_library.insert("files",req.body,function(err,result){
+			if(result){
+		  		res.send("Success")	  	
+		  	}
+		  	else
+		  	{
+		  		console.log(err)
+		  	}
+		});
+	}
 });
 
 router.get('/cartpro', function(req, res) {
 	id = req.cookies.prod_ids;
-common_library.select("*","products","pro_id in ("+id+")",function(err,result){
+	common_library.select("*","products","pro_id in ("+id+")",function(err,result){
   	if(result){
   		res.send(JSON.stringify(result))
   	
