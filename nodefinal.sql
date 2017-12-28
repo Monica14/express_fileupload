@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Nov 24, 2017 at 05:22 PM
--- Server version: 5.7.20-0ubuntu0.16.04.1
--- PHP Version: 7.0.22-0ubuntu0.16.04.1
+-- Host: 127.0.0.1
+-- Generation Time: Dec 28, 2017 at 06:43 PM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -62,6 +62,51 @@ INSERT INTO `categories` (`cat_id`, `cat_name`, `cat_time`) VALUES
 (1, 'Mens Wear', '2017-10-30 12:46:24'),
 (2, 'Womens Wear', '2017-10-30 12:46:24'),
 (3, 'Kids Wear', '2017-10-30 12:46:30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `files`
+--
+
+CREATE TABLE `files` (
+  `id` int(11) NOT NULL,
+  `filename` varchar(100) NOT NULL,
+  `destination` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `files`
+--
+
+INSERT INTO `files` (`id`, `filename`, `destination`) VALUES
+(1, 'file-1514477836873.jpeg', './uploads'),
+(2, 'file-1514477958650.jpg', './uploads'),
+(3, 'file-1514477958633.jpeg', './uploads'),
+(4, 'file-1514479279972.jpeg', './uploads'),
+(5, 'file-1514479416462.jpeg', './uploads'),
+(6, 'file-1514479485439.jpg', './uploads'),
+(7, 'file-1514480323550.jpg', './uploads'),
+(8, 'file-1514480323519.JPG', './uploads'),
+(9, 'file-1514480612908.jpg', './uploads'),
+(10, 'file-1514480612923.jpg', './uploads'),
+(11, 'file-1514480655618.jpg', './uploads'),
+(12, 'file-1514480655571.JPG', './uploads'),
+(13, 'file-1514480678939.jpg', './uploads'),
+(14, 'file-1514480678963.jpg', './uploads'),
+(15, 'file-1514480693955.jpg', './uploads'),
+(16, 'file-1514480693959.jpg', './uploads'),
+(17, 'file-1514482248211.jpeg', './uploads'),
+(18, 'file-1514482259533.jpeg', './uploads'),
+(19, 'file-1514482292129.jpg', './uploads'),
+(20, 'file-1514482292109.jpeg', './uploads'),
+(21, 'file-1514482316049.jpg', './uploads'),
+(22, 'file-1514482329470.jpeg', './uploads'),
+(23, 'file-1514482362833.jpeg', './uploads'),
+(24, 'file-1514482410029.jpeg', './uploads'),
+(25, 'file-1514482460090.JPG', './uploads'),
+(26, 'file-1514482502288.jpg', './uploads'),
+(27, 'file-1514482535953.jpg', './uploads');
 
 -- --------------------------------------------------------
 
@@ -149,6 +194,12 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`cat_id`);
 
 --
+-- Indexes for table `files`
+--
+ALTER TABLE `files`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `login`
 --
 ALTER TABLE `login`
@@ -180,6 +231,11 @@ ALTER TABLE `brands`
 --
 ALTER TABLE `categories`
   MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `files`
+--
+ALTER TABLE `files`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `login`
 --
